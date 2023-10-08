@@ -1,19 +1,12 @@
 import {
   _decorator,
   Animation,
-  AnimationState,
   BoxCollider2D,
   Collider2D,
   Component,
   Contact2DType,
-  ImageAsset,
   IPhysics2DContact,
-  Node,
-  resources,
-  RigidBody,
   RigidBody2D,
-  Sprite,
-  SpriteFrame,
 } from 'cc';
 import { BulletController } from './BulletController';
 import { PlayerController } from './PlayerController';

@@ -1,21 +1,13 @@
 import {
   _decorator,
   Animation,
-  BoxCollider2D,
-  Collider2D,
   Component,
-  Contact2DType,
   director,
   EventTouch,
   find,
-  ImageAsset,
   instantiate,
-  IPhysics2DContact,
   Node,
   Prefab,
-  resources,
-  Sprite,
-  SpriteFrame,
 } from 'cc';
 import { EnemyController } from './EnemyController';
 import { EnemyManager } from './EnemyManager';
@@ -26,9 +18,6 @@ const { ccclass, property } = _decorator;
 export class PlayerController extends Component {
   @property(Prefab)
   bulletPre: Prefab = null;
-  hero_0 = null;
-  hero_1 = null;
-  hero_tag: boolean = true;
   hero_die = false;
   start() {
     // 移动

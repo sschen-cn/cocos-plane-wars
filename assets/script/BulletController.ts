@@ -1,13 +1,4 @@
-import {
-  _decorator,
-  BoxCollider2D,
-  Collider2D,
-  Component,
-  Contact2DType,
-  IPhysics2DContact,
-  Node,
-} from 'cc';
-import { EnemyController } from './EnemyController';
+import { _decorator, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('BulletController')
