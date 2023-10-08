@@ -65,7 +65,10 @@ export class PlayerController extends Component {
 
     if ((otherCollider.tag = 1)) {
       // 销毁敌人
-      otherCollider.getComponent(EnemyController).die();
+      let other = otherCollider.getComponent(EnemyController);
+      if (other) {
+        other.die();
+      }
       // 自己死亡
       // 加载爆炸图片
       this.node.getComponent(Animation).play('player_die');
