@@ -48,36 +48,21 @@ export class PlayerController extends Component {
         bullet.setPosition(this.node.position.x, this.node.position.y + 80, 0);
       }
     }, 0.5);
-    // 碰撞敌人
-    let collider = this.node.getComponent(BoxCollider2D);
-    collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
   }
-  onBeginContact(
-    selfCollider: Collider2D,
-    otherCollider: Collider2D,
-    contact: IPhysics2DContact | null
-  ) {
-    // 处理碰撞敌人，玩家死亡
+
+  die() {
+    // 玩家死亡
     this.hero_die = true;
-    this.node.getComponent(Animation).stop();
+    this.node.getComponent(Animation).stop(); // 暂停生成敌人
     // 暂停生成敌人
     find('Canvas/EnemyManager')?.getComponent(EnemyManager)?.pause();
-
-    if ((otherCollider.tag = 1)) {
-      // 销毁敌人
-      let other = otherCollider.getComponent(EnemyController);
-      if (other) {
-        other.die();
-      }
-      // 自己死亡
-      // 加载爆炸图片
-      this.node.getComponent(Animation).play('player_die');
-      setTimeout(() => {
-        // this.node.destroy();
-        // 游戏结束提示
-        find('Canvas/bg')?.getComponent(BgController)?.gameover();
-      }, 300);
-    }
+    // 自己死亡 播放动画并提示gameover
+    let ani = this.node.getComponent(Animation);
+    ani.on(Animation.EventType.FINISHED, this.tips, this);
+    ani.play('player_die');
+  }
+  tips() {
+    find('Canvas/bg')?.getComponent(BgController)?.gameover();
   }
 
   reStart() {

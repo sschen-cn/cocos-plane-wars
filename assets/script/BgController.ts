@@ -34,6 +34,9 @@ export class BgController extends Component {
     }
   }
 
+  /**
+   * 游戏结束提示
+   */
   gameover() {
     this.pause();
     // 创建提示

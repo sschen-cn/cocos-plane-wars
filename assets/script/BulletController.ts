@@ -15,10 +15,7 @@ export class BulletController extends Component {
   @property
   speed: number = 800;
 
-  start() {
-    let collider = this.node.getComponent(BoxCollider2D);
-    collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-  }
+  start() {}
 
   update(deltaTime: number) {
     if (this.node.isValid) {
@@ -35,22 +32,15 @@ export class BulletController extends Component {
       }
     }
   }
-  onBeginContact(
-    selfCollider: Collider2D,
-    otherCollider: Collider2D,
-    contact: IPhysics2DContact | null
-  ) {
-    // 如果碰到敌人，销毁自己，让敌人死亡
-    if (otherCollider.tag == 1) {
-      // 销毁自己
-      if (this.node && this.node.isValid) {
-        // console.log('子弹销毁');
-        setTimeout(() => {
-          this.node.destroy();
-        }, 0);
-      }
-      // 销毁敌人
-      otherCollider.getComponent(EnemyController).die();
+  /**
+   * 子弹销毁
+   */
+  die() {
+    if (this.node && this.node.isValid) {
+      // console.log('子弹销毁');
+      setTimeout(() => {
+        this.node.destroy();
+      }, 0);
     }
   }
 }

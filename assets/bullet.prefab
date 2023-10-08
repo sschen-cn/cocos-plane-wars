@@ -153,10 +153,10 @@
     "__prefab": {
       "__id__": 7
     },
-    "tag": 0,
+    "tag": 2,
     "_group": 1,
     "_density": 1,
-    "_sensor": true,
+    "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0,
     "_offset": {
@@ -179,7 +179,6 @@
     "__type__": "fa1feFG8r9DR5UN1ZI1uHvX",
     "_name": "",
     "_objFlags": 0,
-    "__editorExtras__": {},
     "node": {
       "__id__": 1
     },
@@ -207,7 +206,7 @@
       "__id__": 11
     },
     "enabledContactListener": true,
-    "bullet": true,
+    "bullet": false,
     "awakeOnLoad": true,
     "_group": 1,
     "_type": 2,
@@ -237,6 +236,7 @@
       "__id__": 0
     },
     "fileId": "73Bupx/KZJU6+Rx4wQxtAo",
+    "instance": null,
     "targetOverrides": null
   }
 ]
