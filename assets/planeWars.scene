@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "game",
+    "_name": "planeWars",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -184,7 +184,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 400.00000000000006,
+    "_orthoHeight": 400,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -741,10 +741,7 @@
         "__expectedType__": "cc.AnimationClip"
       }
     ],
-    "_defaultClip": {
-      "__uuid__": "47c71eac-29da-4a89-b30e-e0b2c916dc5c",
-      "__expectedType__": "cc.AnimationClip"
-    },
+    "_defaultClip": null,
     "_id": "0e61liYrxJR7CJdQ7lGonG"
   },
   {
