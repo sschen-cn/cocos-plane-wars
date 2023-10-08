@@ -1,5 +1,6 @@
 import {
   _decorator,
+  Animation,
   BoxCollider2D,
   Collider2D,
   Component,
@@ -30,25 +31,6 @@ export class PlayerController extends Component {
   hero_tag: boolean = true;
   hero_die = false;
   start() {
-    // 切换飞行状态
-    resources.load('hero0', (err, img: ImageAsset) => {
-      if (!err) {
-        this.hero_0 = SpriteFrame.createWithImage(img);
-      }
-    });
-    resources.load('hero1', (err, img: ImageAsset) => {
-      if (!err) {
-        this.hero_1 = SpriteFrame.createWithImage(img);
-      }
-    });
-    this.schedule(() => {
-      if (!this.hero_die) {
-        this.node.getComponent(Sprite).spriteFrame = this.hero_tag
-          ? this.hero_0
-          : this.hero_1;
-        this.hero_tag = !this.hero_tag;
-      }
-    }, 0.5);
     // 移动
     this.node.on(Node.EventType.TOUCH_MOVE, (e: EventTouch) => {
       if (!this.hero_die) {
@@ -77,6 +59,7 @@ export class PlayerController extends Component {
   ) {
     // 处理碰撞敌人，玩家死亡
     this.hero_die = true;
+    this.node.getComponent(Animation).stop();
     // 暂停生成敌人
     find('Canvas/EnemyManager')?.getComponent(EnemyManager)?.pause();
 
@@ -85,23 +68,19 @@ export class PlayerController extends Component {
       otherCollider.getComponent(EnemyController).die();
       // 自己死亡
       // 加载爆炸图片
-      resources.load('hero1_die', ImageAsset, (err, img: ImageAsset) => {
-        if (!err && this.node && this.node.isValid) {
-          this.node.getComponent(Sprite).spriteFrame =
-            SpriteFrame.createWithImage(img);
-        }
-        setTimeout(() => {
-          // this.node.destroy();
-          // 游戏结束提示
-          find('Canvas/bg')?.getComponent(BgController)?.gameover();
-        }, 300);
-      });
+      this.node.getComponent(Animation).play('player_die');
+      setTimeout(() => {
+        // this.node.destroy();
+        // 游戏结束提示
+        find('Canvas/bg')?.getComponent(BgController)?.gameover();
+      }, 300);
     }
   }
 
   reStart() {
     // 复活玩家
     this.hero_die = false;
+    this.node.getComponent(Animation).play('player');
     // 重新生成敌人
     find('Canvas/EnemyManager')?.getComponent(EnemyManager)?.reStart();
     this.node.setPosition(0, -300, 0);
